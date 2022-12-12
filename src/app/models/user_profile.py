@@ -26,6 +26,16 @@ class UserProfile(models.Model):
         max_length=255,
         null=True,
         blank=True,
+        default='',
+    )
+
+
+    first_name = models.CharField(
+        _('last name'),
+        max_length=255,
+        null=True,
+        blank=True,
+        default='',
     )
 
     last_name = models.CharField(
@@ -33,6 +43,7 @@ class UserProfile(models.Model):
         max_length=255,
         null=True,
         blank=True,
+        default='',
     )
 
     phone = models.CharField(
@@ -40,6 +51,7 @@ class UserProfile(models.Model):
         max_length=255,
         null=True,
         blank=True,
+        default='',
     )
 
     address = models.CharField(
@@ -47,6 +59,7 @@ class UserProfile(models.Model):
         max_length=255,
         null=True,
         blank=True,
+        default='',
     )
 
     city = models.CharField(
@@ -54,27 +67,7 @@ class UserProfile(models.Model):
         max_length=255,
         null=True,
         blank=True,
-    )
-
-    state = models.CharField(
-        _('state'),
-        max_length=255,
-        null=True,
-        blank=True,
-    )
-
-    country = models.CharField(
-        _('country'),
-        max_length=255,
-        null=True,
-        blank=True,
-    )
-
-    zip_code = models.CharField(
-        _('zip code'),
-        max_length=255,
-        null=True,
-        blank=True,
+        default='',
     )
 
     created_at = models.DateTimeField(
@@ -88,8 +81,8 @@ class UserProfile(models.Model):
     )
 
     class Meta:
-        verbose_name = _('user profile profile')
+        verbose_name = _('user profile')
         verbose_name_plural = _('user profiles')
 
     def __str__(self):
-        return f'{self.user.get_username()} {self.name} {self.last_name}'
+        return f'{self.user.get_username()}'

@@ -7,6 +7,12 @@ from django.contrib import admin
 
 class UserProfileAdmin(admin.ModelAdmin):
     
-    pass
+    list_display = (
+        'user',
+        'name',
+        'phone',
+        'address',
+        'city',
+    )
 
 admin.site.register(UserProfile, UserProfileAdmin)

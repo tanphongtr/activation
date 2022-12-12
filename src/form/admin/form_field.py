@@ -5,7 +5,20 @@ from django.utils.translation import gettext_lazy as _
 from form.models import FormField
 from django.contrib import admin
 
+from django.contrib.admin.widgets import FilteredSelectMultiple
+from django import forms
+
+
+class FormFieldForm(forms.ModelForm):
+    class Meta:
+        model = FormField
+        fields = '__all__'
+        widgets = {
+            'option': FilteredSelectMultiple('Options', False),
+        }
+
 class FormFieldAdmin(admin.ModelAdmin):
+    form = FormFieldForm
 
     list_display = (
         'id',

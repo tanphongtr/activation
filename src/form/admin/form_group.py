@@ -18,7 +18,4 @@ class FormGroupAdmin(nested_admin.NestedModelAdmin):
     ]
     pass
 
-
-
-
 admin.site.register(FormGroup, FormGroupAdmin)
