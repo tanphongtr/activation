@@ -46,6 +46,7 @@ INSTALLED_APPS += [
     'rest_api',
     'rest_framework',
     'nested_admin',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
