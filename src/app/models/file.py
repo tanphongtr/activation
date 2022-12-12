@@ -8,7 +8,12 @@ class File(models.Model):
 
     file = models.FileField(upload_to='file/%Y/%m/%d')
     created_at = models.DateTimeField(auto_now_add=True)
-    upload_by = models.ForeignKey(User, related_name='files', on_delete=models.CASCADE)
+    upload_by = models.ForeignKey(
+        to=User,
+        related_name='files',
+        on_delete=models.CASCADE,
+        to_field='username',
+    )
 
     def __str__(self):
         return self.file.name
