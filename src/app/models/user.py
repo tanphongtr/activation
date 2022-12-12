@@ -3,6 +3,12 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
 
+    project = models.ManyToManyField(
+        'app.Project',
+        related_name='profiles',
+        blank=True,
+    )
+
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'

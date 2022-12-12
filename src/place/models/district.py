@@ -23,6 +23,7 @@ class District(models.Model):
         'place.Province',
         on_delete=models.CASCADE,
         related_name='districts',
+        to_field='code',
     )
 
     def __str__(self):

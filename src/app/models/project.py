@@ -17,7 +17,7 @@ class Project(models.Model):
         default=nanoid_generate,
         max_length=255,
         null=False,
-        blank=True,
+        blank=False,
     )
 
     description = models.TextField(

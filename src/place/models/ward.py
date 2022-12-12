@@ -24,6 +24,7 @@ class Ward(models.Model):
         'place.District',
         on_delete=models.CASCADE,
         related_name='wards',
+        to_field='code',
     )
 
     def __str__(self):

@@ -140,3 +140,10 @@ AUTH_USER_MODEL = 'app.User'
 
 # Add slash to the end of the url
 APPEND_SLASH = True
+
+# Fixtures
+FIXTURE_DIRS = [
+    BASE_DIR / "fixtures",
+]
+
+print(FIXTURE_DIRS)

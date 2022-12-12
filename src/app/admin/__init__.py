@@ -1,5 +1,5 @@
 from .user import *
-from .employee import *
+from .user_profile import *
 from .project import *
 from .campaign import *
 from .store import *

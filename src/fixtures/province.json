@@ -1,0 +1,18 @@
+[
+    {
+        "model": "place.Province",
+        "pk": 1,
+        "fields": {
+            "name": "Type 1",
+            "code": "T1"
+        }
+    },
+    {
+        "model": "place.Province",
+        "pk": 2,
+        "fields": {
+            "name": "Type 2",
+            "code": "T2"
+        }
+    }
+]

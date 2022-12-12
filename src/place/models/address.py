@@ -23,6 +23,7 @@ class Address(models.Model):
         'place.Ward',
         on_delete=models.CASCADE,
         related_name='addresses',
+        to_field='code',
     )
 
     def __str__(self):

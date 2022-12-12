@@ -8,12 +8,6 @@ User = get_user_model()
 
 class UserProfile(models.Model):
 
-    project = models.ManyToManyField(
-        'app.Project',
-        related_name='profiles',
-        blank=True,
-    )
-
     photo = models.ImageField(
         _('photo'),
         upload_to='profile/',
