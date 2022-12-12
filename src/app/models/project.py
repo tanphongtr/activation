@@ -14,7 +14,7 @@ class Project(models.Model):
     code = models.CharField(
         _('code'),
         unique=True,
-        default=order_id_generate,
+        default=nanoid_generate,
         max_length=255,
         null=False,
         blank=True,
