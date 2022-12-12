@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,6 +91,18 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('MARIADB_DATABASE', 'diana'),
+        'USER': os.getenv('MARIADB_ROOT_USER', 'root'),
+        'PASSWORD': os.getenv('MARIADB_ROOT_PASSWORD', '123456'),
+        # Or an IP Address that your DB is hosted on, 0.0.0.0 in docker linux
+        'HOST': os.getenv('MARIADB_CONTAINER_NAME', 'localhost'),
+        'PORT': os.getenv('MARIADB_PORT', '3366'),
+    },
+
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -142,9 +155,8 @@ AUTH_USER_MODEL = 'app.User'
 # Add slash to the end of the url
 APPEND_SLASH = True
 
-# Fixtures
+# Fixtures rootpath/fixtures
 FIXTURE_DIRS = [
     BASE_DIR / "fixtures",
 ]
 
-print(FIXTURE_DIRS)
