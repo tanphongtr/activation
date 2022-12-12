@@ -3,8 +3,8 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 
-class FieldOption(models.Model):
-
+class FormGroup(models.Model):
+    
     index = models.IntegerField(
         _('index'),
         default=0,
@@ -15,21 +15,17 @@ class FieldOption(models.Model):
         max_length=255,
     )
 
-    value = models.CharField(
-        _('value'),
-        max_length=255,
-    )
-
-    field = models.ForeignKey(
-        'form.Field',
-        related_name='field_options',
+    form = models.ForeignKey(
+        'form.Form',
+        related_name='form_groups',
         on_delete=models.CASCADE,
+        null=True,
+        blank=True,
     )
 
     class Meta:
-        verbose_name = _('field option')
-        verbose_name_plural = _('field options')
-        ordering = ('-index',)
+        verbose_name = _('form group')
+        verbose_name_plural = _('form groups')
 
     def __str__(self):
-        return f'{self.name} - {self.value}'
+        return self.name
