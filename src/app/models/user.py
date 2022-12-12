@@ -1,15 +1,16 @@
+from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-
-    def __str__(self):
-        employee = self.employee
-        if employee:
-            return f'{self.username} ({employee.name})'
-        return f'{self.username}'
 
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
 
+def create_user_profile(sender, instance, created, **kwargs):
+    from app.models import UserProfile
+    if created:
+        UserProfile.objects.create(user=instance)
 
+models.signals.post_save.connect(
+    create_user_profile, sender=User, weak=False, dispatch_uid='models.create_user_profile')

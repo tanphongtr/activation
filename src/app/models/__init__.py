@@ -3,4 +3,4 @@ from .project import Project
 from .campaign import Campaign
 from .store import Store
 from .plan import Plan
-from .employee import Employee
+from .user_profile import UserProfile

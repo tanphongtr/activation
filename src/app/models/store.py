@@ -31,7 +31,7 @@ class Store(models.Model):
     )
 
     place = models.ForeignKey(
-        to='place.Address',
+        to='place.Location',
         related_name='stores',
         on_delete=models.CASCADE,
         null=True,

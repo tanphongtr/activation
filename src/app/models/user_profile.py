@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 User = get_user_model()
 
 
-class Employee(models.Model):
+class UserProfile(models.Model):
 
     project = models.ManyToManyField(
         'app.Project',
@@ -94,8 +94,8 @@ class Employee(models.Model):
     )
 
     class Meta:
-        verbose_name = _('employee')
-        verbose_name_plural = _('employees')
+        verbose_name = _('user profile profile')
+        verbose_name_plural = _('user profiles')
 
     def __str__(self):
         return f'{self.user.get_username()} {self.name} {self.last_name}'
