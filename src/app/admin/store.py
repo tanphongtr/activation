@@ -6,6 +6,7 @@ from app.models import Store
 from django.contrib import admin
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django import forms
+from import_export.admin import ExportActionMixin, ImportExportModelAdmin, ImportExportActionModelAdmin, ImportMixin
 
 
 class StoreForm(forms.ModelForm):
@@ -16,7 +17,7 @@ class StoreForm(forms.ModelForm):
             'campaign': FilteredSelectMultiple('Campaigns', False),
         }
 
-class StoreAdmin(admin.ModelAdmin):
+class StoreAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     form = StoreForm
     pass
 

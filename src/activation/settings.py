@@ -50,6 +50,7 @@ INSTALLED_APPS += [
     'nested_admin',
     'drf_yasg',
     'debug_toolbar',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -102,7 +103,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MARIADB_DATABASE', 'diana'),
+        'NAME': os.getenv('MARIADB_DATABASE', 'activation'),
         'USER': os.getenv('MARIADB_ROOT_USER', 'root'),
         'PASSWORD': os.getenv('MARIADB_ROOT_PASSWORD', '123456'),
         # Or an IP Address that your DB is hosted on, 0.0.0.0 in docker linux

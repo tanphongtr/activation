@@ -28,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: ./src/Dockerfile
-    command: celery -A diana worker --loglevel=info
+    command: celery -A activation worker --loglevel=info
 
     env_file:
       - .env
@@ -47,11 +47,11 @@ services:
     build:
       context: .
       dockerfile: ./src/Dockerfile
-    command: celery -A diana beat -l info -S django
+    command: celery -A activation beat -l info -S django
     env_file:
       - .env
     volumes:
-      - .:/usr/src/app/
+      - ./src:/usr/src/app/
       - ${ROOT_VOLUME_DIR}/static_volume:/home/app/staticfiles
       - ${ROOT_VOLUME_DIR}/media_volume:/home/app/mediafiles
 
