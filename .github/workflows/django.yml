@@ -8,6 +8,6 @@ jobs:
     steps:
       - name: Django Docker Build
         run: |
-          cp .env.example .env
+          cp ./.env.example ./.env
           docker compose build
           docker compose up
