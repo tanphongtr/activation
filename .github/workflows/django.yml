@@ -17,5 +17,18 @@ jobs:
         run: |
           ls -a
           cp ./.env.example ./.env
-          docker compose build
-          docker compose up -d
+          docker compose build  
+        
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy
+        run: docker compose up -d
+        
+  migrate:
+    runs-on: self-hosted
+    steps:
+      - name: Migrate
+        run: echo "test"
+
+
