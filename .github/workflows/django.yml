@@ -18,4 +18,7 @@ jobs:
           ls -a
           cp ./.env.example ./.env
           docker compose build
+          
+      - name: Django Deploy
+        run: |
           docker compose up -d
