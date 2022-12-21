@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Django Docker Build
         run: |
           ls -a
