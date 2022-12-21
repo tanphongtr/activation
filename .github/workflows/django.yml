@@ -7,7 +7,7 @@ on:
       - 'releases/**'
 
 jobs:
-  build:
+  activation_deploy:
     runs-on: self-hosted
     steps:
       - name: Checkout
@@ -18,17 +18,7 @@ jobs:
           ls -a
           cp ./.env.example ./.env
           docker compose build  
-        
-  deploy:
-    runs-on: self-hosted
-    steps:
-      - name: Deploy
-        run: docker compose up -d
-        
-  migrate:
-    runs-on: self-hosted
-    steps:
-      - name: Migrate
-        run: echo "test"
-
-
+      
+      - name: Django Docker Deploy
+        run: |
+          docker compose up -d
