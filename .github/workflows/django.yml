@@ -1,12 +1,25 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
 
 jobs:
   build:
     runs-on: self-hosted
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Django Docker Build
         run: |
+          ls -a
+          cp ./.env.example ./.env
           docker compose build
-          docker compose up
+          
+      - name: Django Deploy
+        run: |
+          docker compose up -d
+
