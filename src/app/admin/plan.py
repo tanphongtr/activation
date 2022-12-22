@@ -17,6 +17,8 @@ class PlanForm(forms.ModelForm):
         }
 class PlanAdmin(admin.ModelAdmin):
     form = PlanForm
-    pass
+
+    # change template
+    change_list_template = 'admin/plan/index.html'
 
 admin.site.register(Plan, PlanAdmin)

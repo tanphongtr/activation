@@ -14,7 +14,7 @@ class FormFieldForm(forms.ModelForm):
         model = FormField
         fields = '__all__'
         widgets = {
-            'option': FilteredSelectMultiple('Options', False),
+            'options': FilteredSelectMultiple('Options', False),
         }
 
 class FormFieldAdmin(admin.ModelAdmin):

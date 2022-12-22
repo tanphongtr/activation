@@ -40,6 +40,11 @@ class FormField(models.Model):
         null=True,
     )
 
+    use_default = models.BooleanField(
+        _('use default'),
+        default=False,
+    )
+
     required = models.BooleanField(
         _('required'),
         default=False,
@@ -54,7 +59,7 @@ class FormField(models.Model):
         blank=True,
     )
 
-    option = models.ManyToManyField(
+    options = models.ManyToManyField(
         'form.Option',
         related_name='form_fields',
         blank=True,

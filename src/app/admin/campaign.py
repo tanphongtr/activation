@@ -6,6 +6,11 @@ from app.models import Campaign
 from django.contrib import admin
 
 class CampaignAdmin(admin.ModelAdmin):
-    pass
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        for field in form.base_fields:
+            form.base_fields[field].widget.attrs['autocomplete'] = 'off'
+        return form
+    autocomplete_fields = []
 
 admin.site.register(Campaign, CampaignAdmin)

@@ -3,5 +3,5 @@ from .views import ProjectAPIView
 
 
 urlpatterns = [
-    path('', ProjectAPIView.as_view()),
+    path('', ProjectAPIView.as_view(), name='project'),
 ]
