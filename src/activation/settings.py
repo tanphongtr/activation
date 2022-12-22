@@ -69,6 +69,8 @@ MIDDLEWARE = [
 MIDDLEWARE += [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'app.middleware.TestMiddleware',
+    # Cache
+    'django.middleware.cache.UpdateCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'activation.urls'
@@ -177,3 +179,19 @@ if DEBUG:
     import socket  # only if you haven't already imported this
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://" + os.getenv('REDIS_CONTAINER_NAME', '127.0.0.1') + ":6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "SOCKET_CONNECT_TIMEOUT": 5,  # seconds
+            "SOCKET_TIMEOUT": 5,  # seconds
+        },
+        "KEY_PREFIX": "redis_cache",
+        "TIMEOUT": 5,
+        "TTL": 5,
+    }
+}
