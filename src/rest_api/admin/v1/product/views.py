@@ -23,10 +23,7 @@ class TestProduct(generics.GenericAPIView):
         product_id = kwargs.get('product_id')
         product = Product.objects.filter(id=product_id, qty_remaining__gt=0)
         if product.update(qty_remaining=F('qty_remaining') - 1):
-            a = Project(
-                name='test',
-                created_by_id=1
-            )
-            a.save()
+            # thêm một vài đoạn code ở đây
+            pass
 
         return Response({'success': 'Product is available'}, status=200)
