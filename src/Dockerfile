@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libmariadbclient-dev
 
 # Requirements are installed here to ensure they will be cached.
-COPY ./requirements.txt .
+COPY ./src/requirements.txt .
 
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
@@ -61,4 +61,4 @@ RUN pip install --no-cache-dir --no-index --find-links=/wheels/ /wheels/* \
     && rm -rf /wheels/
 
 # copy application code to WORKDIR
-COPY . ${APP_HOME}
+COPY ./src ${APP_HOME}
