@@ -76,8 +76,8 @@ services:
       MYSQL_DATABASE: ${MARIADB_DATABASE}
 
     volumes:
-      - mariadb_volume/data:/var/lib/mysql
-      - mariadb_volume/scripts:/var/www/scripts # Run: source /var/www/scripts/xxx.sql to import db
+      - mariadb_volume:/var/lib/mysql
+      - mariadb_volume:/var/www/scripts # Run: source /var/www/scripts/xxx.sql to import db
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.1.0
