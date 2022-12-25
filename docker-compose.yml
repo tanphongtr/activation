@@ -18,8 +18,8 @@ services:
 
     volumes:
       - ./src:/usr/src/app/
-      - ${ROOT_VOLUME_DIR}/static_volume:/home/app/staticfiles
-      - ${ROOT_VOLUME_DIR}/media_volume:/home/app/mediafiles
+      - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/mediafiles
     depends_on:
       - mariadb
     restart: always
@@ -37,8 +37,8 @@ services:
 
     volumes:
       - ./src/:/usr/src/app/
-      - ${ROOT_VOLUME_DIR}/static_volume:/home/app/staticfiles
-      - ${ROOT_VOLUME_DIR}/media_volume:/home/app/mediafiles
+      - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/mediafiles
 
     depends_on:
       - mariadb
@@ -56,8 +56,8 @@ services:
       - .env
     volumes:
       - ./src:/usr/src/app/
-      - ${ROOT_VOLUME_DIR}/static_volume:/home/app/staticfiles
-      - ${ROOT_VOLUME_DIR}/media_volume:/home/app/mediafiles
+      - static_volume:/home/app/staticfiles
+      - media_volume:/home/app/mediafiles
 
     depends_on:
       - mariadb
@@ -76,8 +76,8 @@ services:
       MYSQL_DATABASE: ${MARIADB_DATABASE}
 
     volumes:
-      - ${ROOT_VOLUME_DIR}/mariadb_volume/data:/var/lib/mysql
-      - ${ROOT_VOLUME_DIR}/mariadb_volume/scripts:/var/www/scripts # Run: source /var/www/scripts/xxx.sql to import db
+      - mariadb_volume/data:/var/lib/mysql
+      - mariadb_volume/scripts:/var/www/scripts # Run: source /var/www/scripts/xxx.sql to import db
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.1.0
@@ -101,3 +101,8 @@ services:
     restart: always
   
 
+volumes:
+  # postgres_data:
+  static_volume:
+  media_volume:
+  mariadb_volume:
