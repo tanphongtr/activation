@@ -57,6 +57,7 @@ class ProjectAPIView(generics.ListCreateAPIView):
             raise exceptions.APIException(detail=str(e))
 
     def get(self, request, *args, **kwargs):
+        print(request.META.get("REMOTE_ADDR"))
         name = self.request.resolver_match.view_name
         print(name)
         return super().get(request, *args, **kwargs)
