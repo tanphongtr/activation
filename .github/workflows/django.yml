@@ -17,9 +17,9 @@ jobs:
         run: |
           ls -a
           cp ./.env.example ./.env
-          docker compose build
+          docker compose -f docker-compose.alpine.yml build
           
       - name: Django Deploy
         run: |
-          docker compose up -d
+          docker compose -f docker-compose.alpine.yml up -d
 

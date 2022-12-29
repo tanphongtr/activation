@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.10-slim-buster
+ARG PYTHON_VERSION=3.10-alpine3.14
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} as python
@@ -9,15 +9,24 @@ FROM python as python-build-stage
 ARG BUILD_ENVIRONMENT=local
 
 # Install apt packages
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    # dependencies for building Python packages
-    build-essential \
-    # psycopg2 dependencies
-    libpq-dev \
-    # mariadb dependencies
-    # libmariadb-dev \
-    # default-libmysqlclient-dev \
-    libmariadbclient-dev
+RUN \
+    apk update && \
+    apk add --no-cache \
+    gcc \
+    build-base \
+    bind-tools \
+    mysql-client \
+    mariadb-dev \
+    # postgresql14-client \
+    # xmlsec \
+    # git \
+    util-linux \
+    # curl-dev \
+    # openssl \
+    libffi-dev \
+    && \
+    rm -rf /var/cache/apk/* && \
+    true
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./src/requirements.txt .
@@ -40,17 +49,26 @@ ENV BUILD_ENV ${BUILD_ENVIRONMENT}
 WORKDIR ${APP_HOME}
 
 # Install required system dependencies
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    # psycopg2 dependencies
-    # libpq-dev \
-    # Translations dependencies
-    gettext \
-    libmariadb-dev \
-    # default-libmysqlclient-dev \
-    libmariadbclient-dev \
-    # cleaning up unused files
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-    && rm -rf /var/lib/apt/lists/*
+RUN \
+    apk update && \
+    apk add --no-cache \
+    # openjpeg \
+    # jpeg \
+    # tiff \
+    # bind-tools \
+    mysql-client \
+    mariadb-dev \
+    # xmlsec \
+    # git \
+    util-linux \
+    # postgresql14-client \
+    # curl-dev \
+    # openssl \
+    # needed for integration-tests
+    # bash \
+    && \
+    rm -rf /var/cache/apk/* && \
+    true
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
 # copy python dependency wheels from python-build-stage
