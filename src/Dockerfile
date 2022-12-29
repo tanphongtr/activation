@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     # dependencies for building Python packages
     build-essential \
     # psycopg2 dependencies
-    libpq-dev \
+    libpq-dev
     # mariadb dependencies
     # libmariadb-dev \
     # default-libmysqlclient-dev \
-    libmariadbclient-dev
+    # libmariadbclient-dev
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./src/requirements.txt .
@@ -47,7 +47,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     gettext \
     libmariadb-dev \
     # default-libmysqlclient-dev \
-    libmariadbclient-dev \
+    # libmariadbclient-dev \
     # cleaning up unused files
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
