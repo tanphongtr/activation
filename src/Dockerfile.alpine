@@ -18,11 +18,11 @@ RUN \
     mysql-client \
     mariadb-dev \
     # postgresql14-client \
-    # xmlsec \
+    xmlsec \
     # git \
     util-linux \
-    # curl-dev \
-    # openssl \
+    curl-dev \
+    openssl \
     libffi-dev \
     && \
     rm -rf /var/cache/apk/* && \
@@ -52,20 +52,20 @@ WORKDIR ${APP_HOME}
 RUN \
     apk update && \
     apk add --no-cache \
-    # openjpeg \
-    # jpeg \
-    # tiff \
-    # bind-tools \
+    openjpeg \
+    jpeg \
+    tiff \
+    bind-tools \
     mysql-client \
     mariadb-dev \
-    # xmlsec \
+    xmlsec \
     # git \
     util-linux \
     # postgresql14-client \
-    # curl-dev \
-    # openssl \
+    curl-dev \
+    openssl \
     # needed for integration-tests
-    # bash \
+    bash \
     && \
     rm -rf /var/cache/apk/* && \
     true
