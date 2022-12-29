@@ -17,9 +17,9 @@ jobs:
         run: |
           ls -a
           cp ./.env.example ./.env
-          docker compose -f docker-compose.slim-bullseye.yml build
+          docker compose build
           
       - name: Django Deploy
         run: |
-          docker compose -f docker-compose.slim-bullseye.yml up -d
+          docker compose up -d
 
