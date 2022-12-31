@@ -93,7 +93,15 @@ admin_schema_view = get_schema_view(
     generator_class=BothHttpAndHttpsSchemaGenerator,
 )
 
+def schema_view(request):
+    import requests
+
+    admin = requests.get('https://username:password@domains.google.com/nic/update?hostname=subdomain.yourdomain.com&myip=1.2.3.4')
+    return JsonResponse(admin.json(), safe=False)
+
+
 urlpatterns = [
+    path('', schema_view, name='schema-swagger-ui'),
     path('admincp/', admin.site.urls),
     path('admin/api/v1/', include('rest_api.admin.v1.urls')),
     path('mobile/api/v1/', include('rest_api.mobile.v1.urls')),
