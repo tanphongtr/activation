@@ -17,6 +17,7 @@ RUN \
     apk update && \
     apk add --no-cache \
     gcc \
+    g++ \
     build-base \
     bind-tools \
     mysql-client \
