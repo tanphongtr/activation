@@ -8,6 +8,10 @@ FROM python as python-build-stage
 
 ARG BUILD_ENVIRONMENT=local
 
+# Thời gian install pandas lâu, nên phải thêm dòng này
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk add --update --no-cache py3-numpy py3-pandas@testing
+
 # Install apt packages
 RUN \
     apk update && \
