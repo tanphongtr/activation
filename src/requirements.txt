@@ -29,7 +29,7 @@ geopy==2.2.0
 gunicorn==20.1.0
 mysqlclient==2.0.3
 nanoid==2.0.0
-pandas==1.4.3
+pandas==1.5
 pyjwt==2.1.0 # https://pyjwt.readthedocs.io/
 redis==3.5.3
 tablib==3.0.0
