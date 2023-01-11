@@ -35,6 +35,9 @@ RUN \
 # Requirements are installed here to ensure they will be cached.
 COPY ./src/requirements.txt .
 
+# Upgrade pip
+RUN python -m pip install --upgrade pip
+
 # Create Python Dependency and Sub-Dependency Wheels.
 RUN pip wheel --wheel-dir /usr/src/app/wheels  \
     -r requirements.txt
