@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.11-alpine
+ARG PYTHON_VERSION=3.6-alpine
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} as python
@@ -9,7 +9,7 @@ FROM python as python-build-stage
 ARG BUILD_ENVIRONMENT=local
 
 # Thời gian install pandas lâu, nên phải thêm dòng này
-# RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 RUN apk add --update --no-cache py3-numpy py3-pandas@testing
 
 # Install apt packages
