@@ -60,7 +60,7 @@ class FormField(models.Model):
     )
 
     options = models.ManyToManyField(
-        'form.Option',
+        'form.FieldOption',
         related_name='form_fields',
         blank=True,
     )

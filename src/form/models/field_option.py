@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 
 
-class Option(models.Model):
+class FieldOption(models.Model):
 
     index = models.IntegerField(
         _('index'),
@@ -21,8 +21,8 @@ class Option(models.Model):
     )
 
     class Meta:
-        verbose_name = _('option')
-        verbose_name_plural = _('options')
+        verbose_name = _('field option')
+        verbose_name_plural = _('field options')
 
     def __str__(self):
         return self.name + ' - ' + self.value

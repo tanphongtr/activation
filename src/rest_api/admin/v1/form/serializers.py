@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from form.models import Form, FormGroup, FormField, Option, FieldType
+from form.models import Form, FormGroup, FormField, FieldOption, FieldType
 
 
 class FieldTypeSerializer(serializers.ModelSerializer):
@@ -9,17 +9,17 @@ class FieldTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
         # read_only_fields = ('id',)
 
-class OptionSerializer(serializers.ModelSerializer):
+class FieldOptionSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Option
+        model = FieldOption
         fields = '__all__'
         # read_only_fields = ('id',)
 
 
 class FormFieldSerializer(serializers.ModelSerializer):
 
-    options = OptionSerializer(many=True, read_only=True)
+    options = FieldOptionSerializer(many=True, read_only=True)
     field_type = FieldTypeSerializer(many=False, read_only=True)
 
     class Meta:
