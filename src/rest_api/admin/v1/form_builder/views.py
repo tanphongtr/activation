@@ -1,5 +1,5 @@
 from rest_framework import generics
-from form.models import Form
+from form_builder.models import Form
 from .serializers import FormSerializer
 
 

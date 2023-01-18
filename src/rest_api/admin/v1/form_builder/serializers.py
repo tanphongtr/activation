@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from form.models import Form, FormGroup, FormField, FieldOption, FieldType
+from form_builder.models import Form, FormGroup, FormField, FieldOption, FieldType
 
 
 class FieldTypeSerializer(serializers.ModelSerializer):

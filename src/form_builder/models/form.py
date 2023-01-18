@@ -18,6 +18,34 @@ class Form(models.Model):
         blank=True,
     )
 
+    campaigns = models.ManyToManyField(
+        'app.Campaign',
+        related_name='forms',
+        verbose_name=_('campaigns'),
+        blank=True,
+    )
+
+    stores = models.ManyToManyField(
+        'app.Store',
+        related_name='forms',
+        verbose_name=_('stores'),
+        blank=True,
+    )
+
+    plans = models.ManyToManyField(
+        'app.Plan',
+        related_name='forms',
+        verbose_name=_('plans'),
+        blank=True,
+    )
+
+    employees = models.ManyToManyField(
+        User,
+        related_name='employee_forms',
+        verbose_name=_('employees'),
+        blank=True,
+    )
+
     created_by = models.ForeignKey(
         User,
         related_name='forms',

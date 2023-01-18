@@ -16,7 +16,7 @@ class FormGroup(models.Model):
     )
 
     form = models.ForeignKey(
-        'form.Form',
+        'form_builder.Form',
         related_name='form_groups',
         on_delete=models.CASCADE,
         null=True,

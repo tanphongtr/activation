@@ -68,7 +68,7 @@ mobile_schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
     # url="",
     patterns=[
-        path('mobile/api/v1/', include('rest_api.mobile.v1.urls')),
+        path('<str:project_code>/api/mobile/v1/', include('rest_api.mobile.v1.urls')),
     ],
     generator_class=BothHttpAndHttpsSchemaGenerator,
 )
@@ -88,7 +88,7 @@ admin_schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
     # url="",
     patterns=[
-        path('admin/api/v1/', include('rest_api.admin.v1.urls')),
+        path('<str:project_code>/api/admin/v1/', include('rest_api.admin.v1.urls')),
     ],
     generator_class=BothHttpAndHttpsSchemaGenerator,
 )
@@ -104,8 +104,8 @@ def schema_view2(request):
 urlpatterns = [
     path('', schema_view2, name='schema-swagger-ui'),
     path('admincp/', admin.site.urls),
-    path('admin/api/v1/', include('rest_api.admin.v1.urls')),
-    path('mobile/api/v1/', include('rest_api.mobile.v1.urls')),
+    path('<str:project_code>/api/admin/v1/', include('rest_api.admin.v1.urls')),
+    path('<str:project_code>/api/mobile/v1/', include('rest_api.mobile.v1.urls')),
 ]
 
 
@@ -116,7 +116,7 @@ if bool(True):
             cache_timeout=0), name='schema-swagger-ui'),
         path('docs/admin/', admin_schema_view.with_ui('swagger',
                 cache_timeout=0), name='schema-swagger-ui'),
-        path('docs/mobile', mobile_schema_view.with_ui('swagger',
+        path('docs/mobile/', mobile_schema_view.with_ui('swagger',
                 cache_timeout=0), name='schema-swagger-ui'),
         path('__debug__/', include('debug_toolbar.urls')),
     ]

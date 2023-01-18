@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'app',
-    'form',
+    'form_builder',
     'place',
     'rest_api',
 ]

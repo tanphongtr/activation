@@ -26,7 +26,7 @@ class FormField(models.Model):
     )
 
     field_type = models.ForeignKey(
-        'form.FieldType',
+        'form_builder.FieldType',
         related_name='form_fields',
         on_delete=models.CASCADE,
         null=True,
@@ -52,7 +52,7 @@ class FormField(models.Model):
 
     # ForeignKey to FormGroup
     form_group = models.ForeignKey(
-        'form.FormGroup',
+        'form_builder.FormGroup',
         related_name='form_fields',
         on_delete=models.CASCADE,
         null=True,
@@ -60,7 +60,7 @@ class FormField(models.Model):
     )
 
     options = models.ManyToManyField(
-        'form.FieldOption',
+        'form_builder.FieldOption',
         related_name='form_fields',
         blank=True,
     )
