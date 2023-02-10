@@ -32,7 +32,9 @@ import os
 class BothHttpAndHttpsSchemaGenerator(generators.OpenAPISchemaGenerator):
     def get_schema(self, request=None, public=False):
         schema = super().get_schema(request, public)
-        schema.schemes = ['http', 'https'] if bool(True) else ['https', 'http']
+        print(request.is_secure(), 'request.is_secure()', request.scheme, 'request.scheme')
+        # schema.schemes = ['https'] if bool(request.is_secure()) else ['http']
+        schema.schemes = [request.scheme]
         return schema
 
 
@@ -93,16 +95,12 @@ admin_schema_view = get_schema_view(
     generator_class=BothHttpAndHttpsSchemaGenerator,
 )
 
-def schema_view2(request):
-    import requests
-
-    admin = requests.get('https://5TkCfUwhlQ6qjoPY:4ftoeCjRDTfD1Nln@domains.google.com/nic/update?hostname=ddns.phongtran.dev&myip=1.2.3.4')
-    print(admin.text)
+def index(request):
     return JsonResponse({'status': 'ok'})
 
 
 urlpatterns = [
-    path('', schema_view2, name='schema-swagger-ui'),
+    path('', index, name='schema-swagger-ui'),
     path('admincp/', admin.site.urls),
     path('<str:project_code>/api/admin/v1/', include('rest_api.admin.v1.urls')),
     path('<str:project_code>/api/mobile/v1/', include('rest_api.mobile.v1.urls')),

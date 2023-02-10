@@ -54,6 +54,8 @@ INSTALLED_APPS += [
     'drf_yasg',
     'debug_toolbar',
     'import_export',
+    'django_celery_beat',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -195,3 +197,12 @@ CACHES = {
         "TTL": 5,
     }
 }
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_CROSS_ORIGIN_OPENER_POLICY = None
+
+CELERY_BROKER_URL = 'redis://' + os.getenv('REDIS_CONTAINER_NAME', '127.0.0.1') + ':6379/1'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'redis://' + os.getenv('REDIS_CONTAINER_NAME', '127.0.0.1') + ':6379/1'
+CELERY_RESULT_BACKEND = 'django-db'
