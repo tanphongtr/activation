@@ -54,6 +54,8 @@ INSTALLED_APPS += [
     'drf_yasg',
     'debug_toolbar',
     'import_export',
+    # grpc
+    'django_grpc_framework',
 ]
 
 MIDDLEWARE = [

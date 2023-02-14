@@ -29,6 +29,9 @@ from django.http import JsonResponse
 from django.views.generic.base import RedirectView
 import os
 
+import account_pb2_grpc
+from services import UserService
+
 class BothHttpAndHttpsSchemaGenerator(generators.OpenAPISchemaGenerator):
     def get_schema(self, request=None, public=False):
         schema = super().get_schema(request, public)
@@ -122,3 +125,6 @@ if bool(True):
     ]
 
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+def grpc_handlers(server):
+    account_pb2_grpc.add_UserControllerServicer_to_server(UserService.as_servicer(), server)
